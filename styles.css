@@ -4,9 +4,39 @@ body {
 }
 .container {
     margin: 0 auto;
-    max-width: 500px;
+    max-width: 400px;
     text-align: center;
 }
+
+.menu{
+    padding-bottom: 20px;
+}
+
+h1 {
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.menu ul {
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    list-style: none;
+    padding:0px;
+    margin:0px;
+    display: flex;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+    padding-bottom:4px;
+}
+
+.menu a:hover {
+    border-bottom: 2px solid white;
+}
+
+
 
 .table {
     background-color:white;
@@ -14,13 +44,17 @@ body {
     border-radius: 15px;
 }
 
-ul {
+.table ul {
     list-style: none;
     padding: 0px;
     margin: 0px;
     padding-bottom:10px;
 }
-li {
+.table li {
     padding: 5px 0px 5px;
     border-bottom: 1px solid #ddd;
+}
+.table li:last-child {
+    border-bottom: none;
+    padding: 5px 0px 0px;
 }
