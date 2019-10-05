@@ -1,0 +1,26 @@
+body {
+    background-color: lightskyblue;
+    
+}
+.container {
+    margin: 0 auto;
+    max-width: 500px;
+    text-align: center;
+}
+
+.table {
+    background-color:white;
+    border: 1px solid gray;
+    border-radius: 15px;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    padding-bottom:10px;
+}
+li {
+    padding: 5px 0px 5px;
+    border-bottom: 1px solid #ddd;
+}
