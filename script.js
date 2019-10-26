@@ -1,29 +1,35 @@
 const loadReposButton = document.querySelector('button');
 
 const getAllRepos = async () => {
-    console.log('getting all repos list...');
-    const response = await fetch('https://api.github.com/orgs/angular/repos?per_page=100')
-    const data = await response.json();
-    return data;
+    console.log('fetching all angular repos list...');
+    const response = fetch("https://api.github.com/orgs/angular/repos?per_page=100", {
+        method: 'get',
+        headers: new Headers({
+            Authorization: "Basic TWFyY2luUGlldGtpZXdpY3o6YjAyZmE1NTZlYmNkNmRmMzI3MzgyODE3ZmM0MjBjNTI5ZTllMWFiYg==",
+            'Content-Type': 'application/x-www-form-urlencoded'
+        })
+    })
+        .then(response => {
+            console.log('api requests remaining in this hour: ', response.headers.get('X-RateLimit-Remaining'));
+            return response;
+        })
+        .then(response => response.json())
+        .then(response => console.log(response))
+    return data = await response;
 }
 
 loadReposButton.addEventListener('click', () => {
     if (localStorage.getItem('AnguRepos') === null) {
-        const repos = getAllRepos()
+        getAllRepos()
             .then(data => data.map(item => item.contributors_url))
-            .then(data => localStorage.setItem('AnguRepos', data))
-            .then(console.log('localStorage object succesffuly written'))
+            .then(data => { localStorage.setItem('AnguRepos', data); return data })
+            .then(data => { console.log("localStorage object 'AnguRepos' succesffuly written", data); return data; })
             .catch(err => console.log('github data fetch unsuccessful - ', err))
-
     }
     else {
-        console.log('Angular repositories data is already fetched and in local storage:')
-        const repos = localStorage.getItem('AnguRepos')
-        console.log(repos);
+        console.log('Angular repositories data is already fetched and in local storage:');
+        let data = localStorage.getItem('AnguRepos');
+        console.log(data)
+        return data;
     }
-
 });
-
-const getAllRepoContributors = async (repo) => {
-    console.log(`getting all contributors for ${repo}`)
-}
