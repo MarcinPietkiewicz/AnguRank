@@ -8,7 +8,7 @@ const fetchWithAuthorization = async (url) => fetch(url, {
         'Content-Type': 'application/x-www-form-urlencoded'
     })
 })
-    .then(response => { const data = response.json(); console.log(data); return data; })
+    .then(response => { const data = response.json(); console.log('Requests remaining in this hour: ', response.headers.get('X-RateLimit-Remaining')); return data; })
 
 
 const getAllRepos = async () => {
@@ -23,7 +23,7 @@ loadReposButton.addEventListener('click', () => {
         getAllRepos()
             .then(data => data.map(item => item.contributors_url))
             .then(data => { localStorage.setItem('AnguRepos', data); return data })
-            .then(data => { console.log("localStorage object 'AnguRepos' succesffuly written", data); return data; })
+            .then(data => { console.log("localStorage object 'AnguRepos' successfuly written", data); return data; })
             .catch(err => console.log('github data fetch unsuccessful - ', err))
     }
     else {
